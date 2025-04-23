@@ -11,6 +11,9 @@ pub struct TrafficLight {
 }
 
 impl TrafficLight {
+    pub fn new(light: Cross) -> TrafficLight {
+        Self{light, color: Color::RED}
+    }
   
     pub fn draw(&mut self, canvas: &mut Canvas<Window>, width: i32, height: i32, vehicle: i32) {
         let half_width = width / 2;
@@ -25,7 +28,7 @@ impl TrafficLight {
         let points = match self.light {
             Cross::First => [
                 Path::new((x1, y2), (x1, y1)),
-                Path::new((x2, y1), (y1, x1)),
+                Path::new((x2, y1), (x1, y1)),
             ],
             Cross::Second => [
                 Path::new((x1, y3), (x1, y4)),
@@ -33,11 +36,11 @@ impl TrafficLight {
             ],
             Cross::Third => [
                 Path::new((x4, y2), (x4, y1)),
-                Path::new((y3, y1), (x4, y1)),
+                Path::new((x3, y1), (x4, y1)),
             ],
             Cross::Fourth => [
                 Path::new((x4, y3), (x4, y4)),
-                Path::new((x4, y4), (y3, x4)),
+                Path::new((x4, y4), (x3, y4)),
             ],
         };
 

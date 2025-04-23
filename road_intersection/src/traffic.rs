@@ -6,8 +6,8 @@ use crate::lane::Cross;
 
 #[derive(Debug, Clone, Copy)]
 pub struct TrafficLight {
-     light: Cross,
-     color: Color,
+    pub light: Cross,
+    pub color: Color,
 }
 
 impl TrafficLight {

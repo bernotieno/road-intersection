@@ -21,6 +21,7 @@ impl TrafficLight {
         let vehicle_width = 2*vehicle;
         let gap = 5;
 
+        // set coordinates for the positioning of traffic lights at intersections
         let (x1, x2, x3, x4) = (half_width - vehicle_width - 10 * gap, half_width - vehicle_width - gap, half_width + vehicle_width + gap, half_width + vehicle_width + 10 * gap);
         let (y1, y2, y3, y4) = (half_height  - vehicle_width - 10 * gap, half_height  - vehicle_width - gap, half_height  + vehicle_width + gap, half_height  + vehicle_width + 10 * gap);
 
@@ -49,6 +50,7 @@ impl TrafficLight {
         };
     }
 
+    // toggle between red and green lights
     pub fn change_traffic_light(&mut self) {
         match self.color {
             Color::RED => self.color = Color::GREEN,

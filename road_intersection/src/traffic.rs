@@ -51,8 +51,8 @@ impl TrafficLight {
 
     pub fn change_traffic_light(&mut self) {
         match self.color {
-            Color::RED => self.color 
-            Color::GREEN => self.color
+            Color::RED => self.color = Color::GREEN,
+            Color::GREEN => self.color = Color::RED,
             _ => ()
         };
     }

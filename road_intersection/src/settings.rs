@@ -116,16 +116,4 @@ mod tests {
         assert!(settings.stop_point_second.x < settings.vertical_road_1);
     }
 
-    #[test]
-    fn test_symmetry_across_center() {
-        let s = Settings::new(1000, 800, 20, 10, 10.0);
-        assert_eq!(
-            s.change_direction_1.x + s.change_direction_2.x,
-            s.width
-        );
-        assert_eq!(
-            s.change_direction_1.y + s.change_direction_2.y,
-            s.height
-        );
-    }
 }

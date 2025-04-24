@@ -322,7 +322,7 @@ impl Vehicle {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use sdl2::pixels::Color;
+    // use sdl2::pixels::Color;
 
     #[cfg(test)]
 fn mock_settings() -> Rc<Settings> {

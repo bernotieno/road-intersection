@@ -165,6 +165,5 @@ impl Lane {
             self.vehicles.push(vehicle);
         }
 
-        // println!("route {:?} len {}", self.cross, self.vehicles.len());
     }
 }

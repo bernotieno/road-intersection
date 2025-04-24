@@ -8,7 +8,7 @@ pub fn main() {
     let video_subsystem = sdl_context.video().unwrap();
 
     let window = video_subsystem
-        .window("rust-sdl2 demo", settings.width as u32, settings.height as u32)
+        .window("Road-Intersection Simulator", settings.width as u32, settings.height as u32)
         .position_centered()
         .build()
         .unwrap();

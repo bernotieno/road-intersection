@@ -21,18 +21,19 @@ This simulation demonstrates a custom traffic control strategy to manage flow at
 ## USAGE
 1. Clone the repo:
 ```bash 
-$ https://learn.zone01kisumu.ke/git/rotieno/road_intersection.git
+https://learn.zone01kisumu.ke/git/rotieno/road_intersection.git
 ```
-2. Navigate to the directory:
+2. Navigate to the directory of the cloned repo then into the project directory:
 ```bash
-$ cd road_intersection
+cd road_intersection/road_intersection
 ```
 3. Execute
 ```bash
-$ cargo run
+cargo run
 ```
-4. Controls
-You will use your keyboard to spawn vehicles for your simulation. You will use the arrow keys to spawn a vehicle on the appropriate side of the road, and with a random route.
+4. Controls:
+
+    You will use your keyboard to spawn vehicles for your simulation. You will use the arrow keys to spawn a vehicle on the appropriate side of the road, and with a random route.
 
 * ↑ Up: moves towards the intersection from the south.
 * ↓ Down: moves towards the intersection from the north.
@@ -44,6 +45,5 @@ You will use your keyboard to spawn vehicles for your simulation. You will use t
 ## UNIT TESTS
 * To run the unit tests use this command:
 ```bash
-$ cd road_intersection
-$ cargo test
+cargo test
 ```

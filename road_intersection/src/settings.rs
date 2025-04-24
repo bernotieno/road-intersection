@@ -74,3 +74,58 @@ impl Settings {
         }
     }
 }
+
+// Tests
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use sdl2::rect::Point;
+
+    #[test]
+    fn test_offset_road_calculation() {
+        let settings = Settings::new(800, 600, 20, 10, 10.0);
+        assert_eq!(settings.offset_road, 10 + 2 * 20); // gap + 2 * vehicle
+    }
+
+    #[test]
+    fn test_road_coordinates() {
+        let settings = Settings::new(800, 600, 20, 10, 10.0);
+        let expected_half_width = 800 / 2;
+        let expected_half_height = 600 / 2;
+        let offset = 10 + 2 * 20;
+
+        assert_eq!(settings.horizontal_road_1, expected_half_height - offset);
+        assert_eq!(settings.vertical_road_2, expected_half_width + offset);
+    }
+
+    #[test]
+    fn test_vehicle_appearance_positions() {
+        let settings = Settings::new(800, 600, 20, 10, 10.0);
+        let offset_road_s = 10 + 20;
+
+        assert_eq!(settings.appearance_vehicle_up, Point::new(400 + offset_road_s / 2, 600));
+        assert_eq!(settings.appearance_vehicle_right, Point::new(-20, 300 + offset_road_s / 2));
+    }
+
+    #[test]
+    fn test_stop_points_consistency() {
+        let settings = Settings::new(800, 600, 20, 10, 10.0);
+        // Stop point should be above horizontal_road_1
+        assert!(settings.stop_point_first.y < settings.horizontal_road_1);
+        // Stop point should be to the left of vertical_road_1
+        assert!(settings.stop_point_second.x < settings.vertical_road_1);
+    }
+
+    #[test]
+    fn test_symmetry_across_center() {
+        let s = Settings::new(1000, 800, 20, 10, 10.0);
+        assert_eq!(
+            s.change_direction_1.x + s.change_direction_2.x,
+            s.width
+        );
+        assert_eq!(
+            s.change_direction_1.y + s.change_direction_2.y,
+            s.height
+        );
+    }
+}

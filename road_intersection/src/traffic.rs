@@ -17,7 +17,7 @@ impl TrafficLight {
   
     pub fn draw(&mut self, canvas: &mut Canvas<Window>, width: i32, height: i32, vehicle: i32) {
         let half_width = width / 2;
-        let half_height = height / 2
+        let half_height = height / 2;
         let vehicle_width = 2*vehicle;
         let gap = 5;
 

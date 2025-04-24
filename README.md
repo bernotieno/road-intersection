@@ -41,3 +41,9 @@ You will use your keyboard to spawn vehicles for your simulation. You will use t
 * r: moves towards the intersection from a random direction.
 * Esc Escape: ends the simulation.
 
+## UNIT TESTS
+* To run the unit tests use this command:
+```bash
+$ cd road_intersection
+$ cargo test
+```

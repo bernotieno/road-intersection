@@ -317,27 +317,3 @@ impl Vehicle {
         }
     }
 }
-
-// Yellow
-/*
-    route: UP => destination: TurnLeft
-    route: Down => destination: TurnRight
-    route: Left => destination: TurnDown
-    route: Right => destination: TurnUp
-*/
-
-// Blue: still forward
-/*
-    route: UP => destination: GoUP
-    route: Down => destination: GoDown
-    route: Left => destination: goLeft
-    route: Right => destination: GoRight
-*/
-
-// GREEN
-/*
-    route: Up => destination: TurnRight
-    route: Down => destination: GoLeft
-    route: Left => destination: goUp
-    route: Right => destination: GoRight
-*/

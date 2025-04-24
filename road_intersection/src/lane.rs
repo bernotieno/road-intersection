@@ -167,3 +167,92 @@ impl Lane {
 
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use std::rc::Rc;
+    use std::time::Duration;
+    use sdl2::rect::Point;
+
+    fn mock_settings() -> Rc<Settings> {
+        Rc::new(Settings {
+            width: 800,
+            height: 600,
+            vehicle: 20,
+            gap: 5,
+            safety_distance: 10.0,
+            offset_road: 20,
+            horizontal_road_1: 100,
+            vertical_road_1: 100,
+            horizontal_road_2: 300,
+            vertical_road_2: 300,
+            appearance_vehicle_up: Point::new(0, 0),
+            appearance_vehicle_down: Point::new(0, 0),
+            appearance_vehicle_left: Point::new(0, 0),
+            appearance_vehicle_right: Point::new(0, 0),
+            change_direction_1: Point::new(0, 0),
+            change_direction_2: Point::new(0, 0),
+            stop_point_first: Point::new(100, 100),
+            stop_point_second: Point::new(200, 200),
+            stop_point_third: Point::new(300, 300),
+            stop_point_fourth: Point::new(400, 400),
+            dis_vehicle_first: Point::new(0, 0),
+            dis_vehicle_second: Point::new(0, 0),
+            dis_vehicle_third: Point::new(0, 0),
+            dis_vehicle_fourth: Point::new(0, 0),
+        })
+    }
+
+    #[test]
+    fn test_lane_new_sets_correct_values() {
+        let settings = mock_settings();
+        let lane = Lane::new(Cross::First, settings.clone());
+
+        assert_eq!(lane.cross, Cross::First);
+        assert_eq!(lane.stage, Stage::Waiting);
+        assert_eq!(lane.stop_point, settings.stop_point_first);
+        assert_eq!(lane.vehicles.len(), 0);
+        assert_eq!(lane.change_interval, Duration::from_secs(15));
+    }
+
+    #[test]
+    fn test_add_vehicle_adds_to_empty_lane() {
+        let settings = mock_settings();
+        let mut lane = Lane::new(Cross::First, settings.clone());
+
+        lane.add_vehicle(Route::Up); // Valid variant
+
+        assert_eq!(lane.vehicles.len(), 1);
+    }
+
+    #[test]
+    fn test_closest_vehicle_distance_none_when_empty() {
+        let settings = mock_settings();
+        let lane = Lane::new(Cross::First, settings);
+
+        assert_eq!(lane.closest_vehicle_distance(), None);
+    }
+
+    #[test]
+    fn test_stop_vehicules_stops_vehicle_on_stop_point() {
+        let settings = mock_settings();
+        let mut lane = Lane::new(Cross::First, settings.clone());
+
+        let mut vehicle = Vehicle::new(
+            Route::Up,
+            1,
+            settings.clone(),
+            settings.stop_point_first,
+            Cross::First,
+        );
+
+        vehicle.position = settings.stop_point_first;
+        vehicle.is_stopped = false;
+
+        lane.vehicles.push(vehicle);
+        lane.stop_vehicules();
+
+        assert!(lane.vehicles[0].is_stopped);
+    }
+}

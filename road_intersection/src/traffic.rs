@@ -59,3 +59,22 @@ impl TrafficLight {
         };
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use sdl2::pixels::Color;
+    use crate::lane::Cross;
+
+    #[test]
+    fn test_change_traffic_light_toggles() {
+        let mut light = TrafficLight::new(Cross::First);
+        assert_eq!(light.color, Color::RED);
+
+        light.change_traffic_light();
+        assert_eq!(light.color, Color::GREEN);
+
+        light.change_traffic_light();
+        assert_eq!(light.color, Color::RED);
+    }
+}

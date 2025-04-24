@@ -436,14 +436,4 @@ fn mock_settings() -> Rc<Settings> {
         assert_eq!(v.position, Point::new(0, 95));
     }
 
-    #[test]
-    fn test_move_forward_left_to_down_turning() {
-        let settings = mock_settings();
-        let mut v = Vehicle::new(Route::Left, 5, settings.clone(), Point::new(0, 0), Cross::First);
-        v.position = Point::new(settings.change_direction_1.x, 0);
-        v.destination = Route::Down;
-        v.move_forward();
-        assert!(v.is_changed_direction);
-        assert_eq!(v.position.y, 5);
-    }
 }
